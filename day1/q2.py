@@ -201,7 +201,6 @@ input = [
     1306
 ]
 
-dict = {}
 input.sort()
 for i, current in enumerate(input):
     left = i
