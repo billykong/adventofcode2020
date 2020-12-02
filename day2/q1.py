@@ -1005,7 +1005,6 @@ input = [
 
 count = 0
 for line in input:
-  valid = False
   result = re.search(r"^(\d+)-(\d+)\s(\w):\s(.*)$", line)
   min = int(result.group(1))
   max = int(result.group(2))
