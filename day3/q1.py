@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-import input
+from input import input
 
-def q1(array):
+
+def q1(input):
     count = 0
-    for i in range(1, len(array)):
-        y_line = array[i]
+    for i in range(1, len(input)):
+        y_line = input[i]
         x = i * 3 %len(y_line)
         if y_line[x] == "#":
             count += 1
@@ -12,4 +13,4 @@ def q1(array):
     return count
 
 
-print(q1(input.array))
+print(q1(input))
