@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import re
+import sys
 
 from test_input import input_valid, input_invalid
 from input import input
@@ -9,8 +10,7 @@ REQUIRED_FIELDS = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 
 def clear_input(input):
     intermediate = input.split("\n\n")
-    intermediate = list(map(lambda a: a.replace("\n", " "), intermediate))
-    intermediate = list(map(lambda a: a.split(" "), intermediate))
+    intermediate = map(lambda a: a.split(), intermediate)
     result = []
     for key_value_array in intermediate:
         passport_dict = {}
@@ -92,7 +92,7 @@ def q2(input, required_fields=REQUIRED_FIELDS):
         valid = True
         # go through each validation here
         for key in required_fields:
-            valid = valid and globals()["validate_{}".format(key)](passport)
+            valid = valid and getattr(sys.modules[__name__], "validate_{}".format(key))(passport)
 
         if valid == True:
             count += 1
