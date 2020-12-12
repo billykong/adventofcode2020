@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from copy import deepcopy
+
 from input import input, test_input
 
 def parse_input(input):
@@ -38,17 +39,11 @@ def recursion_helper(parsed_input, next, history, acc, changed):
             if step["operation"] == "nop":
                 option_1 = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, False)
                 option_2 = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, True)
-                if option_1 != None:
-                    return option_1
-                else:
-                    return option_2
+                return option_1 if option_1 is not None else option_2
             elif step["operation"] == "jmp":
                 option_1 = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, True)
                 option_2 = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, False)
-                if option_1 != None:
-                    return option_1
-                else:
-                    return option_2
+                return option_1 if option_1 is not None else option_2
 
 def solution(input):
     parsed_input = parse_input(input)
