@@ -4,7 +4,7 @@ from input import input, test_input
 
 def parse_input(input):
     intermediate = input.split()
-    return list(map(int, intermediate))
+    return list(map(int, intermediate)) # need to be subscriptable
 
 def solution(input, preamble):
     parsed_input = parse_input(input)
