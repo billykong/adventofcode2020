@@ -37,13 +37,13 @@ def recursion_helper(parsed_input, next, history, acc, changed):
                 return recursion_helper(parsed_input, jmp_next, history, acc, changed)
         else:
             if step["operation"] == "nop":
-                option_1 = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, False)
-                option_2 = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, True)
-                return option_1 if option_1 is not None else option_2
+                option_nop = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, False)
+                option_jmp = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, True)
+                return option_nop if option_nop is not None else option_jmp
             elif step["operation"] == "jmp":
-                option_1 = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, True)
-                option_2 = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, False)
-                return option_1 if option_1 is not None else option_2
+                option_nop = recursion_helper(parsed_input, nop_next, deepcopy(history), acc, True)
+                option_jmp = recursion_helper(parsed_input, jmp_next, deepcopy(history), acc, False)
+                return option_nop if option_nop is not None else option_jmp
 
 def solution(input):
     parsed_input = parse_input(input)

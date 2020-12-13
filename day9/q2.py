@@ -3,13 +3,12 @@ from input import input, test_input
 
 
 def parse_input(input):
-    intermediate = input.split()
-    return list(map(int, intermediate)) # need to be subscriptable
+    # is it possible to make it lazy and subscriptable?
+    return [int(num) for num in input.split()] 
 
 def solution(input, target):
     parsed_input = parse_input(input)
-    first_i = 0
-    last_i = 1
+    (first_i, last_i) = (0, 1)
     current_sum = parsed_input[first_i] + parsed_input[last_i]
     while last_i < len(parsed_input):
         if current_sum < target:
