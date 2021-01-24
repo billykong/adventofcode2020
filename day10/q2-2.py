@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from functools import reduce
 
-from input import input, test_input, test_input_2
+from input import input, test_input
 
 
 def parse_input(input):
@@ -21,7 +21,7 @@ def jumps(distance):
             travelled += distance[x]
             x -= 1
             if travelled <= 3:
-                # if we can at most jump 3 indices
+                # if we can at most jump 3 distance
                 # counting how may possible ways to get to index i
                 count[i] += count[x]
             else:
@@ -40,6 +40,6 @@ def solution(input):
 
     
 
-print(solution(input)) # 3100448333024
+print(solution(input))
 
-# assert(solution(test_input) == 19208)
+assert(solution(test_input) == 19208)
