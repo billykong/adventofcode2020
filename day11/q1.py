@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
 
 from input import input, test_input
-from itertools import product
 
 
 def parse_input(input):
     return [list(row) for row in input]
 
 def is_taken(seat):
-    return seat == "#"
+    return seat == '#'
 
 def is_empty(seat):
-    return seat == "L"
+    return seat == 'L'
 
 def empty(row, column, seats):
-    seats[row][column] = "L"
+    seats[row][column] = 'L'
 
 def sit(row, column, seats):
-    seats[row][column] = "#"
+    seats[row][column] = '#'
 
 def surround_taken_count(row, column, seats):
     count = 0
-    for r in seats[max(row-1, 0): row+2]:
-        count += len([c for c in r[max(column-1, 0): column+2] if is_taken(c)])
+    for r in seats[max(row - 1, 0): row + 2]:
+        count += len([c for c in r[max(column - 1, 0): column + 2] if is_taken(c)])
     
     if is_taken(seats[row][column]):
         count -= 1
