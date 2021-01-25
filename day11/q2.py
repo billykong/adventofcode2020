@@ -31,30 +31,16 @@ def is_first_seat_occupied(row, column, seats, row_offset, column_offset):
     else:
         return False
 
-
-
 def surround_taken_count(row, column, seats):
     count = 0
-    width = len(seats[0])
-    if is_first_seat_occupied(row, column, seats, 0, 1):
-        count += 1
-    if is_first_seat_occupied(row, column, seats, 1, 0):
-        count += 1
-    if is_first_seat_occupied(row, column, seats, 1, 1):
-        count += 1
+    
+    directions = ((r, c) for r in (1, 0, -1) for c in (1, 0, -1))
+    for direction in directions:
+        if is_first_seat_occupied(row, column, seats, direction[0], direction[1]):
+            count += 1
+    if is_taken(seats[row][column]):
+        count -= 1
 
-    if is_first_seat_occupied(row, column, seats, 0, -1):
-        count += 1
-    if is_first_seat_occupied(row, column, seats, -1, 0):
-        count += 1
-    if is_first_seat_occupied(row, column, seats, -1, -1):
-        count += 1
-    
-    if is_first_seat_occupied(row, column, seats, -1, 1):
-        count += 1
-    if is_first_seat_occupied(row, column, seats, 1, -1):
-        count += 1
-    
     return count
     
 def iterate_seats(width, height, seats):
