@@ -2,7 +2,7 @@
 
 from input import input, test_input
 
-TOLERANCE = 4
+TOLERANCE = 5
 
 def parse_input(input):
     return [list(row) for row in input]
@@ -19,14 +19,42 @@ def empty(row, column, seats):
 def sit(row, column, seats):
     seats[row][column] = '#'
 
+def is_first_seat_occupied(row, column, seats, row_offset, column_offset):
+    next_row = row + row_offset
+    next_column = column + column_offset
+    if next_row >= 0 and next_row < len(seats) and next_column >= 0 and next_column < len(seats[0]):
+        seat = seats[next_row][next_column]
+        if is_empty(seat):
+            return False
+        else:
+            return is_taken(seat) or is_first_seat_occupied(next_row, next_column, seats, row_offset, column_offset)
+    else:
+        return False
+
+
+
 def surround_taken_count(row, column, seats):
     count = 0
-    for r in seats[max(row - 1, 0): row + 2]:
-        count += len([c for c in r[max(column - 1, 0): column + 2] if is_taken(c)])
-    
-    if is_taken(seats[row][column]):
-        count -= 1
+    width = len(seats[0])
+    if is_first_seat_occupied(row, column, seats, 0, 1):
+        count += 1
+    if is_first_seat_occupied(row, column, seats, 1, 0):
+        count += 1
+    if is_first_seat_occupied(row, column, seats, 1, 1):
+        count += 1
 
+    if is_first_seat_occupied(row, column, seats, 0, -1):
+        count += 1
+    if is_first_seat_occupied(row, column, seats, -1, 0):
+        count += 1
+    if is_first_seat_occupied(row, column, seats, -1, -1):
+        count += 1
+    
+    if is_first_seat_occupied(row, column, seats, -1, 1):
+        count += 1
+    if is_first_seat_occupied(row, column, seats, 1, -1):
+        count += 1
+    
     return count
     
 def iterate_seats(width, height, seats):
@@ -63,8 +91,8 @@ def solution(input):
             break
     return count_taken(seats)
 
-print(solution(test_input))
-# print(solution(input))
+# print(solution(test_input))
+print(solution(input))
 
-assert(solution(test_input) == 37)
+assert(solution(test_input) == 26)
 
