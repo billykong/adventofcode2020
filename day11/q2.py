@@ -36,10 +36,10 @@ def surround_taken_count(row, column, seats):
     
     directions = ((r, c) for r in (1, 0, -1) for c in (1, 0, -1))
     for direction in directions:
+        if direction == (0, 0):
+            continue
         if is_first_seat_occupied(row, column, seats, direction[0], direction[1]):
             count += 1
-    if is_taken(seats[row][column]):
-        count -= 1
 
     return count
     
