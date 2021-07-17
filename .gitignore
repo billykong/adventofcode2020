@@ -1,2 +1,5 @@
 **/__pycache__/
 */*.pyc
+.tox
+/venv
+adventofcode2020.egg-info
