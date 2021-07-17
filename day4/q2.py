@@ -2,7 +2,7 @@
 import re
 import sys
 
-from test_input import input_valid, input_invalid
+from sample_input import input_valid, input_invalid
 from input import input
 
 
