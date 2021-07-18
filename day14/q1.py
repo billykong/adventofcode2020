@@ -1,6 +1,6 @@
 import re
 
-from input import test_input, real_input
+from input import test_input_1, real_input
 
 class Q1():
     @staticmethod
@@ -9,7 +9,7 @@ class Q1():
 
     @staticmethod
     def get_mem_address_and_value_from_line(line):
-        address = re.search(r"\[(\d+)\]", line).group(1)
+        address = int(re.search(r"\[(\d+)\]", line).group(1))
         decimal_value = int(re.search(r"= (\d+)$", line).group(1))
         return address, decimal_value
 
@@ -45,6 +45,6 @@ class Q1():
 
 
 if __name__ == "__main__":
-    assert(Q1.solution(test_input) == 165)
+    assert(Q1.solution(test_input_1) == 165)
     print(Q1.solution(real_input))
 
