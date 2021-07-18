@@ -8,7 +8,7 @@ class TestQ1():
 
     def test_get_mem_address_and_value_from_line(self):
         line = "mem[52304] = 107295284"
-        address = "52304"
+        address = 52304
         decimal_value = 107295284
         assert (address, decimal_value) == Q1.get_mem_address_and_value_from_line(line)
 
