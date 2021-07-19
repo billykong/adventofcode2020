@@ -33,7 +33,7 @@ class Q1():
     def solution(cls, input):
         memory = {}
         mask = None
-        for line in input.split("\n"):
+        for line in input.splitlines():
             if line.startswith("mask"):
                 mask = cls.get_mask_from_line(line)
             elif line.startswith("mem"):
